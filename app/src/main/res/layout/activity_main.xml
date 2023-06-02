@@ -65,152 +65,143 @@
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/clearBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
         android:gravity="center"
-        android:onClick="clearButtonClicked"
         android:text="AC"
         android:textColor="#2AECBE"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
+        app:layout_constraintBottom_toTopOf="@+id/num7"
+        app:layout_constraintEnd_toStartOf="@+id/minusBtn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/result_textView" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/num4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
         android:gravity="center"
-        android:onClick="numberButtonClicked"
         android:text="4"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView8"
-        app:layout_constraintEnd_toStartOf="@+id/textView13"
+        app:layout_constraintBottom_toTopOf="@+id/num1"
+        app:layout_constraintEnd_toStartOf="@+id/num5"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/num7" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/num7"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
         android:gravity="center"
-        android:onClick="numberButtonClicked"
         android:text="7"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView7"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintBottom_toTopOf="@+id/num4"
+        app:layout_constraintStart_toStartOf="@+id/clearBtn"
+        app:layout_constraintTop_toBottomOf="@+id/clearBtn" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/num8"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
         android:gravity="center"
-        android:onClick="numberButtonClicked"
         android:text="8"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView13"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintBottom_toTopOf="@+id/num5"
+        app:layout_constraintStart_toStartOf="@+id/minusBtn"
+        app:layout_constraintTop_toBottomOf="@+id/minusBtn" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/num9"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
         android:gravity="center"
-        android:onClick="numberButtonClicked"
         android:text="9"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView14"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintBottom_toTopOf="@+id/num6"
+        app:layout_constraintStart_toStartOf="@+id/modBtn"
+        app:layout_constraintTop_toBottomOf="@+id/modBtn" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/multipleBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
         android:gravity="center"
-        android:onClick="operatorButtonClicked"
         android:text="x"
         android:textColor="#D74B51"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView19"
-        app:layout_constraintStart_toStartOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintBottom_toTopOf="@+id/plusBtn"
+        app:layout_constraintStart_toStartOf="@+id/divideBtn"
+        app:layout_constraintTop_toBottomOf="@+id/divideBtn" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/num5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
         android:gravity="center"
-        android:onClick="numberButtonClicked"
         android:text="5"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView15"
-        app:layout_constraintEnd_toStartOf="@+id/textView14"
+        app:layout_constraintBottom_toTopOf="@+id/num2"
+        app:layout_constraintEnd_toStartOf="@+id/num6"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintStart_toEndOf="@+id/num4"
+        app:layout_constraintTop_toBottomOf="@+id/num8" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/num6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
         android:gravity="center"
-        android:onClick="numberButtonClicked"
         android:text="6"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView17"
-        app:layout_constraintEnd_toStartOf="@+id/textView19"
+        app:layout_constraintBottom_toTopOf="@+id/num3"
+        app:layout_constraintEnd_toStartOf="@+id/plusBtn"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintStart_toEndOf="@+id/num5"
+        app:layout_constraintTop_toBottomOf="@+id/num9" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/num3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
         android:gravity="center"
-        android:onClick="numberButtonClicked"
         android:text="3"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView18"
-        app:layout_constraintEnd_toStartOf="@+id/textView20"
+        app:layout_constraintBottom_toTopOf="@+id/pointBtn"
+        app:layout_constraintEnd_toStartOf="@+id/subBtn"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintStart_toEndOf="@+id/num2"
+        app:layout_constraintTop_toBottomOf="@+id/num6" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/pointBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
@@ -220,52 +211,49 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView21"
+        app:layout_constraintEnd_toStartOf="@+id/equalBtn"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView16"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        app:layout_constraintStart_toEndOf="@+id/num0"
+        app:layout_constraintTop_toBottomOf="@+id/num3" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/plusBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
         android:gravity="center"
-        android:onClick="operatorButtonClicked"
         android:text="+"
         android:textColor="#D74B51"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView20"
+        app:layout_constraintBottom_toTopOf="@+id/subBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintStart_toEndOf="@+id/num6"
+        app:layout_constraintTop_toBottomOf="@+id/multipleBtn" />
 
     <TextView
-        android:id="@+id/textView20"
+        android:id="@+id/subBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
         android:gravity="center"
-        android:onClick="operatorButtonClicked"
         android:text="—"
         android:textColor="#D74B51"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView21"
+        app:layout_constraintBottom_toTopOf="@+id/equalBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView17"
-        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+        app:layout_constraintStart_toEndOf="@+id/num3"
+        app:layout_constraintTop_toBottomOf="@+id/plusBtn" />
 
     <TextView
-        android:id="@+id/textView21"
+        android:id="@+id/equalBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
         android:gravity="center"
-        android:onClick="equalButtonClicked"
         android:text="="
         android:textColor="#D74B51"
         android:textSize="24sp"
@@ -273,11 +261,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView18"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+        app:layout_constraintStart_toEndOf="@+id/pointBtn"
+        app:layout_constraintTop_toBottomOf="@+id/subBtn" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/num2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
@@ -286,106 +274,100 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView16"
-        app:layout_constraintEnd_toStartOf="@+id/textView17"
+        app:layout_constraintBottom_toTopOf="@+id/num0"
+        app:layout_constraintEnd_toStartOf="@+id/num3"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        android:onClick="numberButtonClicked" />
+        app:layout_constraintStart_toEndOf="@+id/num1"
+        app:layout_constraintTop_toBottomOf="@+id/num5" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/num0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
         android:gravity="center"
-        android:onClick="numberButtonClicked"
         android:text="0"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView18"
+        app:layout_constraintEnd_toStartOf="@+id/pointBtn"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintStart_toEndOf="@+id/backBtn"
+        app:layout_constraintTop_toBottomOf="@+id/num2" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/num1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
         android:gravity="center"
-        android:onClick="numberButtonClicked"
         android:text="1"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/textView15"
+        app:layout_constraintBottom_toTopOf="@+id/backBtn"
+        app:layout_constraintEnd_toStartOf="@+id/num2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/num4" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/minusBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
         android:gravity="center"
-        android:onClick="operatorButtonClicked"
         android:text="+/-"
         android:textColor="#2AECBE"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/textView5"
+        app:layout_constraintEnd_toStartOf="@+id/modBtn"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toTopOf="@+id/textView3" />
+        app:layout_constraintStart_toEndOf="@+id/clearBtn"
+        app:layout_constraintTop_toTopOf="@+id/clearBtn" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/modBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
         android:gravity="center"
-        android:onClick="operatorButtonClicked"
         android:text="%"
         android:textColor="#2AECBE"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/textView6"
+        app:layout_constraintEnd_toStartOf="@+id/divideBtn"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
+        app:layout_constraintStart_toEndOf="@+id/minusBtn"
+        app:layout_constraintTop_toTopOf="@+id/minusBtn" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/divideBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
         android:gravity="center"
-        android:onClick="operatorButtonClicked"
         android:text="÷"
         android:textColor="#2AECBE"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toTopOf="@+id/textView5" />
+        app:layout_constraintStart_toEndOf="@+id/modBtn"
+        app:layout_constraintTop_toTopOf="@+id/modBtn" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
-        android:onClick="backButtonClicked"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView16"
+        app:layout_constraintEnd_toStartOf="@+id/num0"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/num1"
         app:srcCompat="@drawable/ic_baseline_settings_backup_restore_24" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

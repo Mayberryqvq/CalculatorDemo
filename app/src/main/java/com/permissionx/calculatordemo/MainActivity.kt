@@ -10,56 +10,172 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     private var isNumStart = true
     private val currentInputStringBuilder = StringBuilder()
-    private val numsList = mutableListOf<Int>()
+    private val numList = mutableListOf<Int>()
     private val operatorList = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        clearBtn.setOnClickListener {
+            currentInputStringBuilder.clear()
+            numList.clear()
+            operatorList.clear()
+            isNumStart = true
+            process_textView.text = ""
+            result_textView.text = "0"
+        }
+        backBtn.setOnClickListener {
+            if (numList.size > operatorList.size) {
+                numList.removeLast()
+                isNumStart = true;
+                currentInputStringBuilder.clear()
+            } else {
+                operatorList.removeLast()
+                isNumStart = false
+                currentInputStringBuilder.append(numList.last())
+            }
+            showProcess()
+        }
+        plusBtn.setOnClickListener {
+            operatorButtonClicked(it)
+        }
+        subBtn.setOnClickListener {
+            operatorButtonClicked(it)
+        }
+        multipleBtn.setOnClickListener {
+            operatorButtonClicked(it)
+        }
+        divideBtn.setOnClickListener {
+            operatorButtonClicked(it)
+        }
+        num0.setOnClickListener {
+            numberButtonClicked(it)
+        }
+        num1.setOnClickListener {
+            numberButtonClicked(it)
+        }
+        num2.setOnClickListener {
+            numberButtonClicked(it)
+        }
+        num3.setOnClickListener {
+            numberButtonClicked(it)
+        }
+        num4.setOnClickListener {
+            numberButtonClicked(it)
+        }
+        num5.setOnClickListener {
+            numberButtonClicked(it)
+        }
+        num6.setOnClickListener {
+            numberButtonClicked(it)
+        }
+        num7.setOnClickListener {
+            numberButtonClicked(it)
+        }
+        num8.setOnClickListener {
+            numberButtonClicked(it)
+        }
+        num9.setOnClickListener {
+            numberButtonClicked(it)
+        }
     }
 
-    fun numberButtonClicked(view: View) {
+    private fun numberButtonClicked(view: View) {
         val textView = view as TextView
         currentInputStringBuilder.append(textView.text)
         if (isNumStart) {
-            numsList.add(textView.text.toString().toInt())
+            numList.add(textView.text.toString().toInt())
             isNumStart = false
         } else {
-            numsList[numsList.size - 1] = currentInputStringBuilder.toString().toInt()
+            numList[numList.size - 1] = currentInputStringBuilder.toString().toInt()
         }
-        showUI()
+        Log.v("numList", "$numList")
+        showProcess()
+        showResult()
 
     }
 
-    fun operatorButtonClicked(view: View) {
+    private fun operatorButtonClicked(view: View) {
         val textView = view as TextView
         operatorList.add(textView.text.toString())
         currentInputStringBuilder.clear()
         isNumStart = true
-        showUI()
+        showProcess()
+        Log.v("operatorList", "$operatorList")
     }
 
-    fun clearButtonClicked(view: View) {
-        currentInputStringBuilder.clear()
-        process_textView.text = ""
-    }
-
-    fun backButtonClicked(view: View) {
-        Log.v("MainActivity", "back")
-    }
 
     fun equalButtonClicked(view: View) {
         Log.v("MainActivity", "equal")
     }
 
-    private fun showUI() {
+    private fun showProcess() {
         val sb = StringBuilder()
-        for ((i, num) in numsList.withIndex()) {
+        for ((i, num) in numList.withIndex()) {
             sb.append(num)
             if (i < operatorList.size) {
                 sb.append(" ${operatorList[i]} ")
             }
         }
         process_textView.text = sb.toString()
+    }
+
+    private fun showResult() {
+        if (numList.size > 0) {
+            var i = 0
+            var param1 = numList[0].toFloat()
+            var param2 = 0.0f
+            if (operatorList.size > 0) {
+                while (true) {
+                    var operator = operatorList[i]
+                    //若当前运算符为乘除，则直接运算
+                    if (operator == "x" || operator == "÷") {
+                        if (i + 1 < numList.size) {
+                            param2 = numList[i + 1].toFloat()
+                            param1 = calculate(param1, operator, param2)
+                        }
+                    } else {
+                        //若当前运算符为加减，则先考虑 1.这是最后一个运算符 和 2.接下来的运算符也是加减 这两种情况
+                        if (i == operatorList.size - 1 || (operatorList[i + 1] != "x" && operatorList[i + 1] != "÷")) {
+                            param2 = numList[i + 1].toFloat()
+                            param1 = calculate(param1, operator, param2)
+                        } else {
+                            //后面还有运算符且运算符是乘除
+                            var j = i + 1
+                            var mParam1 = numList[j].toFloat()
+                            var mParam2 = 0.0f
+                            while (true) {
+                                if (operatorList[j] == "x" || operatorList[j] == "÷") {
+                                    mParam2 = numList[j + 1].toFloat()
+                                    mParam1 = calculate(mParam1, operatorList[j], mParam2)
+                                } else {
+                                     break
+                                }
+                                if (++j == operatorList.size) {
+                                    break
+                                }
+                            }
+                            param2 = mParam1
+                            i = j - 1
+                        }
+                    }
+                    if (++i == operatorList.size) {
+                        break
+                    }
+                }
+            }
+            result_textView.text = String.format("%.2f", param1)
+        }
+    }
+
+    private fun calculate(param1: Float, operator: String, param2: Float): Float {
+        var res = 0.0f
+         when (operator) {
+            "+" -> res = param1 + param2
+            "—" -> res = param1 - param2
+            "x" -> res = param1 * param2
+            "÷" -> res = param1 / param2
+        }
+        return res
     }
 }
