@@ -8,6 +8,7 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
     private var isNumStart = true
     private val currentInputStringBuilder = StringBuilder()
     private val numList = mutableListOf<Int>()
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         backBtn.setOnClickListener {
             if (numList.size > operatorList.size) {
                 numList.removeLast()
-                isNumStart = true;
+                isNumStart = true
                 currentInputStringBuilder.clear()
             } else {
                 operatorList.removeLast()
@@ -35,6 +36,14 @@ class MainActivity : AppCompatActivity() {
                 currentInputStringBuilder.append(numList.last())
             }
             showProcess()
+        }
+        negateBtn.setOnClickListener {
+            numList[numList.size - 1] = -numList[numList.size - 1]
+            showProcess()
+            showResult()
+        }
+        equalBtn.setOnClickListener {
+            showResult()
         }
         plusBtn.setOnClickListener {
             operatorButtonClicked(it)
@@ -46,6 +55,9 @@ class MainActivity : AppCompatActivity() {
             operatorButtonClicked(it)
         }
         divideBtn.setOnClickListener {
+            operatorButtonClicked(it)
+        }
+        modBtn.setOnClickListener {
             operatorButtonClicked(it)
         }
         num0.setOnClickListener {
@@ -96,17 +108,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun operatorButtonClicked(view: View) {
-        val textView = view as TextView
-        operatorList.add(textView.text.toString())
-        currentInputStringBuilder.clear()
-        isNumStart = true
-        showProcess()
-        Log.v("operatorList", "$operatorList")
-    }
-
-
-    fun equalButtonClicked(view: View) {
-        Log.v("MainActivity", "equal")
+        if (operatorList.size < numList.size) {
+            val textView = view as TextView
+            operatorList.add(textView.text.toString())
+            Log.v("Test", "$operatorList")
+            currentInputStringBuilder.clear()
+            isNumStart = true
+            showProcess()
+        }
     }
 
     private fun showProcess() {
@@ -127,16 +136,16 @@ class MainActivity : AppCompatActivity() {
             var param2 = 0.0f
             if (operatorList.size > 0) {
                 while (true) {
-                    var operator = operatorList[i]
+                    val operator = operatorList[i]
                     //若当前运算符为乘除，则直接运算
-                    if (operator == "x" || operator == "÷") {
+                    if (operator == "x" || operator == "÷" || operator == "%") {
                         if (i + 1 < numList.size) {
                             param2 = numList[i + 1].toFloat()
                             param1 = calculate(param1, operator, param2)
                         }
                     } else {
                         //若当前运算符为加减，则先考虑 1.这是最后一个运算符 和 2.接下来的运算符也是加减 这两种情况
-                        if (i == operatorList.size - 1 || (operatorList[i + 1] != "x" && operatorList[i + 1] != "÷")) {
+                        if (i == operatorList.size - 1 || (operatorList[i + 1] != "x" && operatorList[i + 1] != "÷" && operatorList[i + 1] != "%")) {
                             param2 = numList[i + 1].toFloat()
                             param1 = calculate(param1, operator, param2)
                         } else {
@@ -145,7 +154,7 @@ class MainActivity : AppCompatActivity() {
                             var mParam1 = numList[j].toFloat()
                             var mParam2 = 0.0f
                             while (true) {
-                                if (operatorList[j] == "x" || operatorList[j] == "÷") {
+                                if (operatorList[j] == "x" || operatorList[j] == "÷" || operatorList[j] == "%") {
                                     mParam2 = numList[j + 1].toFloat()
                                     mParam1 = calculate(mParam1, operatorList[j], mParam2)
                                 } else {
@@ -156,6 +165,7 @@ class MainActivity : AppCompatActivity() {
                                 }
                             }
                             param2 = mParam1
+                            param1 = calculate(param1, operator, param2)
                             i = j - 1
                         }
                     }
@@ -171,10 +181,11 @@ class MainActivity : AppCompatActivity() {
     private fun calculate(param1: Float, operator: String, param2: Float): Float {
         var res = 0.0f
          when (operator) {
-            "+" -> res = param1 + param2
-            "—" -> res = param1 - param2
-            "x" -> res = param1 * param2
-            "÷" -> res = param1 / param2
+             "+" -> res = param1 + param2
+             "—" -> res = param1 - param2
+             "x" -> res = param1 * param2
+             "÷" -> res = param1 / param2
+             "%" -> res = param1 % param2
         }
         return res
     }
