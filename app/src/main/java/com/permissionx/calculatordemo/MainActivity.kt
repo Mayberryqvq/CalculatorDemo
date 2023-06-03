@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
 
     private var isNumStart = true
     private val currentInputStringBuilder = StringBuilder()
-    private val numList = mutableListOf<Int>()
+    private val numList = mutableListOf<Number>()
     private val operatorList = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,24 +26,51 @@ class MainActivity : AppCompatActivity() {
             result_textView.text = "0"
         }
         backBtn.setOnClickListener {
-            if (numList.size > operatorList.size) {
-                numList.removeLast()
-                isNumStart = true
-                currentInputStringBuilder.clear()
-            } else {
-                operatorList.removeLast()
-                isNumStart = false
-                currentInputStringBuilder.append(numList.last())
+            if (operatorList.isNotEmpty() || numList.isNotEmpty()) {
+                if (numList.size > operatorList.size) {
+                    numList.removeLast()
+                    isNumStart = true
+                    currentInputStringBuilder.clear()
+                } else {
+                    operatorList.removeLast()
+                    isNumStart = false
+                    currentInputStringBuilder.append(numList.last())
+                }
+                showProcess()
+                showResult()
             }
-            showProcess()
         }
         negateBtn.setOnClickListener {
-            numList[numList.size - 1] = -numList[numList.size - 1]
-            showProcess()
-            showResult()
+            if (numList.isNotEmpty()) {
+                if (numList[numList.lastIndex] is Int) {
+                    numList[numList.size - 1] = 0 - numList[numList.size - 1].toInt()
+                } else {
+                    numList[numList.size - 1] = String.format("%.2f", (0 - numList[numList.size - 1].toFloat())).toFloat()
+                }
+                Log.v("numList", "$numList")
+                showProcess()
+                showResult()
+            }
+        }
+        dotBtn.setOnClickListener {
+            if (!isNumStart && !currentInputStringBuilder.contains('.')) {
+                currentInputStringBuilder.append('.')
+                process_textView.text = StringBuilder(process_textView.text).append('.').toString()
+            }
         }
         equalBtn.setOnClickListener {
             showResult()
+            currentInputStringBuilder.clear()
+            process_textView.text = ""
+            numList.clear()
+            currentInputStringBuilder.append(result_textView.text)
+            if (currentInputStringBuilder.contains('.')) {
+                numList.add(String.format("%.2f", currentInputStringBuilder.toString().toFloat()).toFloat())
+            } else {
+                numList.add(currentInputStringBuilder.toString().toInt())
+            }
+            Log.v("numList", "$numList")
+            operatorList.clear()
         }
         plusBtn.setOnClickListener {
             operatorButtonClicked(it)
@@ -99,7 +126,11 @@ class MainActivity : AppCompatActivity() {
             numList.add(textView.text.toString().toInt())
             isNumStart = false
         } else {
-            numList[numList.size - 1] = currentInputStringBuilder.toString().toInt()
+            if (currentInputStringBuilder.contains('.')) {
+                numList[numList.size - 1] = currentInputStringBuilder.toString().toFloat()
+            } else {
+                numList[numList.size - 1] = currentInputStringBuilder.toString().toInt()
+            }
         }
         Log.v("numList", "$numList")
         showProcess()
@@ -111,7 +142,6 @@ class MainActivity : AppCompatActivity() {
         if (operatorList.size < numList.size) {
             val textView = view as TextView
             operatorList.add(textView.text.toString())
-            Log.v("Test", "$operatorList")
             currentInputStringBuilder.clear()
             isNumStart = true
             showProcess()
@@ -175,6 +205,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             result_textView.text = String.format("%.2f", param1)
+        } else {
+            result_textView.text = "0"
         }
     }
 
