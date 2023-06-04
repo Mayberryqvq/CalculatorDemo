@@ -2,7 +2,6 @@ package com.permissionx.calculatordemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -11,7 +10,7 @@ class MainActivity : AppCompatActivity() {
 
     private var isNumStart = true
     private val currentInputStringBuilder = StringBuilder()
-    private val numList = mutableListOf<Number>()
+    private val numList = mutableListOf<String>()
     private val operatorList = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,12 +41,20 @@ class MainActivity : AppCompatActivity() {
         }
         negateBtn.setOnClickListener {
             if (numList.isNotEmpty()) {
-                if (numList[numList.lastIndex] is Int) {
-                    numList[numList.size - 1] = 0 - numList[numList.size - 1].toInt()
+                if (!numList.last().contains('.')) {
+                    if (numList.last()[0] == '-') {
+                        numList[numList.lastIndex] = numList.last().substring(1)
+                    } else {
+                        numList[numList.lastIndex] = StringBuilder(numList.last()).insert(0, '-').toString()
+                    }
                 } else {
-                    numList[numList.size - 1] = String.format("%.2f", (0 - numList[numList.size - 1].toFloat())).toFloat()
+                    //需要修改
+                    if (numList.last()[0] == '-') {
+                        numList[numList.lastIndex] = numList.last().substring(1)
+                    } else {
+                        numList[numList.lastIndex] = StringBuilder(numList.last()).insert(0, '-').toString()
+                    }
                 }
-                Log.v("numList", "$numList")
                 showProcess()
                 showResult()
             }
@@ -65,11 +72,10 @@ class MainActivity : AppCompatActivity() {
             numList.clear()
             currentInputStringBuilder.append(result_textView.text)
             if (currentInputStringBuilder.contains('.')) {
-                numList.add(String.format("%.2f", currentInputStringBuilder.toString().toFloat()).toFloat())
+                numList.add(String.format("%.2f", currentInputStringBuilder.toString().toFloat()))
             } else {
-                numList.add(currentInputStringBuilder.toString().toInt())
+                numList.add(currentInputStringBuilder.toString())
             }
-            Log.v("numList", "$numList")
             operatorList.clear()
         }
         plusBtn.setOnClickListener {
@@ -123,19 +129,17 @@ class MainActivity : AppCompatActivity() {
         val textView = view as TextView
         currentInputStringBuilder.append(textView.text)
         if (isNumStart) {
-            numList.add(textView.text.toString().toInt())
+            numList.add(textView.text.toString())
             isNumStart = false
         } else {
             if (currentInputStringBuilder.contains('.')) {
-                numList[numList.size - 1] = currentInputStringBuilder.toString().toFloat()
+                numList[numList.lastIndex] = currentInputStringBuilder.toString()
             } else {
-                numList[numList.size - 1] = currentInputStringBuilder.toString().toInt()
+                numList[numList.lastIndex] = currentInputStringBuilder.toString()
             }
         }
-        Log.v("numList", "$numList")
         showProcess()
         showResult()
-
     }
 
     private fun operatorButtonClicked(view: View) {
@@ -175,24 +179,27 @@ class MainActivity : AppCompatActivity() {
                         }
                     } else {
                         //若当前运算符为加减，则先考虑 1.这是最后一个运算符 和 2.接下来的运算符也是加减 这两种情况
-                        if (i == operatorList.size - 1 || (operatorList[i + 1] != "x" && operatorList[i + 1] != "÷" && operatorList[i + 1] != "%")) {
-                            param2 = numList[i + 1].toFloat()
-                            param1 = calculate(param1, operator, param2)
+                        if (i == operatorList.size - 1 || (operatorList[i + 1] == "+" || operatorList[i + 1] != "—")) {
+                            if (i + 1 < numList.size) {
+                                param2 = numList[i + 1].toFloat()
+                                param1 = calculate(param1, operator, param2)
+                            }
                         } else {
                             //后面还有运算符且运算符是乘除
                             var j = i + 1
                             var mParam1 = numList[j].toFloat()
                             var mParam2 = 0.0f
                             while (true) {
+                                if (j == operatorList.size) break
                                 if (operatorList[j] == "x" || operatorList[j] == "÷" || operatorList[j] == "%") {
-                                    mParam2 = numList[j + 1].toFloat()
-                                    mParam1 = calculate(mParam1, operatorList[j], mParam2)
+                                    if (j + 1 < numList.size) {
+                                        mParam2 = numList[j + 1].toFloat()
+                                        mParam1 = calculate(mParam1, operatorList[j], mParam2)
+                                    }
                                 } else {
                                      break
                                 }
-                                if (++j == operatorList.size) {
-                                    break
-                                }
+                                j++
                             }
                             param2 = mParam1
                             param1 = calculate(param1, operator, param2)
