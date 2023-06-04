@@ -1,0 +1,3 @@
+*.bat linguist-language=C#
+*.gradle linguist-language=C#
+
