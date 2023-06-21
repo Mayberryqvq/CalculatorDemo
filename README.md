@@ -3,3 +3,4 @@
 
 This is a simple calculator, referring to UI of IOS system calculator. By now, all of the functions have been completed.
 
+![image](https://github.com/Mayberryqvq/CalculatorDemo/blob/master/calculator_demo.gif)
