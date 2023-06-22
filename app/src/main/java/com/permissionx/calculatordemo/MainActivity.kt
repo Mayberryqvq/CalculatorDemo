@@ -132,11 +132,7 @@ class MainActivity : AppCompatActivity() {
             numList.add(textView.text.toString())
             isNumStart = false
         } else {
-            if (currentInputStringBuilder.contains('.')) {
-                numList[numList.lastIndex] = currentInputStringBuilder.toString()
-            } else {
-                numList[numList.lastIndex] = currentInputStringBuilder.toString()
-            }
+            numList[numList.lastIndex] = currentInputStringBuilder.toString()
         }
         showProcess()
         showResult()

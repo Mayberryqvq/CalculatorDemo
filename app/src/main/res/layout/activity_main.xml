@@ -147,7 +147,7 @@
 
     <TextView
         android:id="@+id/multipleBtn"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shape"
         android:gravity="center"
